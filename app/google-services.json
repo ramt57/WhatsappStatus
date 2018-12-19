@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "494520642982",
+    "firebase_url": "https://test-99d16.firebaseio.com",
+    "project_id": "test-99d16",
+    "storage_bucket": "test-99d16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494520642982:android:d3d365578d7bccc2",
+        "android_client_info": {
+          "package_name": "com.ramt57.whatsappstatus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494520642982-p8cqps53n5rc7iflr2k2rrfhhpgg36ns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA-g-TV4Mt2NB_N3YeOUnAR_Wa7tHyA-A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
