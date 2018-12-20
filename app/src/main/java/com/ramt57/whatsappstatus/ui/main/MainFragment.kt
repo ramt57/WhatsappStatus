@@ -2,20 +2,20 @@ package com.ramt57.whatsappstatus.ui.main
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ramt57.whatsappstatus.R
 import com.ramt57.whatsappstatus.repository.CloudRepository
 import kotlin.collections.ArrayList
 
-class MainFragment : androidx.fragment.app.Fragment() ,CloudRepository.CloudRepositoryCallBack{
+class MainFragment : androidx.fragment.app.Fragment() {
     private lateinit var instancr:CloudRepository
-    override fun getCloudData(documentlist: ArrayList<DocumentReference>) {
-        instancr.getDocumentContent(documentlist[0])
-    }
+
 
     var firebaseFirestore = FirebaseFirestore.getInstance()
 
@@ -30,14 +30,19 @@ class MainFragment : androidx.fragment.app.Fragment() ,CloudRepository.CloudRepo
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        instancr=CloudRepository.getInstance(container!!.context)
-        instancr.setCloudListener(this)
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.getCloudFirstData(instancr)
+        viewModel.getDocumentLiveData()
+        viewModel.getQuotesLiveData(viewModel.getSingleDocQuotes("Best"))
+        viewModel.getDocList().observe(this, Observer {
+            Log.w("TAG",it[5].toString()+"")
+        })
+        viewModel.getQuoteList().observe(this, Observer {
+            Log.w("TAG",it[5])
+        })
     }
 }

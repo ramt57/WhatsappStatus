@@ -2,70 +2,52 @@ package com.ramt57.whatsappstatus.repository
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import androidx.lifecycle.MutableLiveData
 
-class CloudRepository private constructor(ctx: Context) {
+
+class CloudRepository {
     private val BASE_COLLECTION: String = "category"
     private val LIST_KEY = "quotes"
-    private var listner: CloudRepositoryCallBack? = null
-    var firestoreInstance: FirebaseFirestore? = null
+    var firestoreInstance: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    init {
-        firestoreInstance = FirebaseFirestore.getInstance()
+    fun getSingleDocument(key: String): DocumentReference {
+        return firestoreInstance.collection(BASE_COLLECTION).document(key)
     }
 
-    companion object {
-        private var INSTANCE: CloudRepository? = null
-        fun getInstance(ctx: Context): CloudRepository {
-            return INSTANCE ?: CloudRepository(ctx)
-        }
-    }
-
-    private fun getSingleDocument(key: String): DocumentReference? {
-        var doc = firestoreInstance?.collection(BASE_COLLECTION)?.document(key)
-        return doc
-    }
-
-    fun getMultiDocument(): List<DocumentReference>? {
-        Log.w("DATA", "eqt d")
-        firestoreInstance?.collection(BASE_COLLECTION)?.get()?.addOnCompleteListener {
+    fun getMultiDocument(): LiveData<List<DocumentReference>> {
+        Log.w("TAG", "from firestore call")
+        val result = MutableLiveData<List<DocumentReference>>()
+        firestoreInstance.collection(BASE_COLLECTION).get().addOnCompleteListener {
             if (it.isSuccessful) {
                 /*retrive all document*/
                 Log.w("DATA", "eqt ")
-                var documentlist = ArrayList<DocumentReference>()
+                val documentlist = ArrayList<DocumentReference>()
                 for (document in it.result!!) {
                     documentlist.add(document.reference)
                 }
-                if (listner != null)
-                    listner!!.getCloudData(documentlist)
-                else
-                    Log.w("DATA", "eqt 12")
-
+                result.postValue(documentlist)
             } else {
                 /*handle failure*/
                 Log.w("DATA", "eqtl ")
             }
         }
-        return null
+        return result
     }
 
-    fun getDocumentContent(documentReference: DocumentReference) {
+    fun getDocumentContent(documentReference: DocumentReference): LiveData<List<*>> {
+        val result = MutableLiveData<List<*>>()
         documentReference.get().addOnCompleteListener {
             if (it.isSuccessful) {
                 var list = it.result?.data?.get(LIST_KEY) as List<*>
-                Log.w("TAG", "" + list[3])
+                result.postValue(list)
             } else {
                 /*handle error*/
             }
         }
+        return result
     }
 
-    fun setCloudListener(tempListner: CloudRepositoryCallBack) {
-        this.listner = tempListner
-    }
-
-    public interface CloudRepositoryCallBack {
-        fun getCloudData(documentlist: ArrayList<DocumentReference>)
-    }
 }
