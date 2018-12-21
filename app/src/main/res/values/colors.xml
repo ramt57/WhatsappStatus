@@ -3,4 +3,13 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <!--custom cool colors-->
+    <color name="lightblue">#C4ECE7</color>
+    <color name="lightgreen">#A3DBD5</color>
+    <color name="lightvoilet">#B0CFF4</color>
+    <color name="lightest">#D0DEE1</color>
+    <color name="voilet">#959ED1</color>
+    <color name="lightorange">#F99F8A</color>
+    <color name="lightpink">#DEA0E3</color>
+    <color name="text_color">#E8F6F6</color>
 </resources>

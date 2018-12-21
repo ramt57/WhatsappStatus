@@ -33,8 +33,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.1.0-alpha02'
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.support:multidex:1.1.0'
+    implementation 'com.google.firebase:firebase-ads:17.1.2'
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'
 }
 apply plugin: 'com.google.gms.google-services'
