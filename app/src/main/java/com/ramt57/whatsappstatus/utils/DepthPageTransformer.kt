@@ -40,7 +40,7 @@ class DepthPageTransformer : ViewPager.PageTransformer {
 
     companion object {
         private val MIN_SCALE = 0.5f
-        private val MAX_SCALE = 0.8f
-        private val MIN_FADE = 0.2f
+        private val MAX_SCALE = 0.6f
+        private val MIN_FADE = 0.3f
     }
 }
