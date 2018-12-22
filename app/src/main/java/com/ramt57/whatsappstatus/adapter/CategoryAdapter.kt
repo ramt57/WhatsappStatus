@@ -36,9 +36,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        Log.w("TAG",getRandomColor().toString()+" sd"
-        )
-
+        Log.w("TAG",getRandomColor().toString()+" sd")
        holder.cardView.setCardBackgroundColor(list[3])
     }
 
