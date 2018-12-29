@@ -43,20 +43,20 @@ class CardFragment : Fragment() {
 
     private fun initviews(view: View?) {
         textView = view!!.findViewById(R.id.textView)
-        copy = view.findViewById(R.id.textView2)
+        copy = view!!.findViewById(R.id.textView2)
         share = view.findViewById(R.id.imageView3)
         pageumber = view.findViewById(R.id.textView4)
     }
 
     private fun setupAds(view: View?) {
         val adRequest = AdRequest.Builder().build()
-        val mAdView = view!!.findViewById<AdView>(R.id.adView)
-        mAdView.loadAd(adRequest)
-        mAdView.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                mAdView.visibility = View.VISIBLE
-            }
-        }
+//        val mAdView = view!!.findViewById<AdView>(R.id.adView)
+//        mAdView.loadAd(adRequest)
+//        mAdView.adListener = object : AdListener() {
+//            override fun onAdLoaded() {
+//                // Code to be executed when an ad finishes loading.
+//                mAdView.visibility = View.VISIBLE
+//            }
+//        }
     }
 }

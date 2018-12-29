@@ -52,7 +52,7 @@ class MainFragment : androidx.fragment.app.Fragment() {
     private fun setup(view: View?) {
         recyclerView=view!!.findViewById(R.id.recyclerview)
         recyclerView.layoutManager=GridLayoutManager(view.context,2)
-        categoryAdapter=CategoryAdapter()
+        categoryAdapter=CategoryAdapter(ArrayList())
         recyclerView.adapter=categoryAdapter
     }
 
